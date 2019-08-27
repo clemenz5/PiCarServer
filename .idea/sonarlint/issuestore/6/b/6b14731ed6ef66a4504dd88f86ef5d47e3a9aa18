@@ -1,0 +1,8 @@
+
+qsquid:S00116"YRename this field "ANGLE_PER_STEP" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­¬•Ж
+Isquid:S1068"2Remove this unused "ANGLE_PER_STEP" private field.(­¬•Ж
+O
+squid:S106;"9Replace this use of System.out or System.err by a logger.(¶мни
+O
+squid:S1062"9Replace this use of System.out or System.err by a logger.(¶мни
+8squid:S1170"!Make this final field static too.(­¬•Ж

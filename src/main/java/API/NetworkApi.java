@@ -18,9 +18,14 @@ public class NetworkApi {
         engineController = new EngineController(new GPIOPinPair(17,27), new GPIOPinPair(14,15), new GPIOPinPair(10,9), new GPIOPinPair(23,24));
     }
 
-    @RequestMapping("/engine")
-    public String power(@RequestParam(value = "powerLeft", defaultValue = "50") String powerLeft, @RequestParam(value = "powerRight", defaultValue = "50") String powerRight) {
+    @RequestMapping("/powerLeft")
+    public String powerLeft(@RequestParam(value = "value", defaultValue = "50") String powerLeft) {
         engineController.leftAxisPower(Float.parseFloat(powerLeft)/100);
+        return "Received" + System.currentTimeMillis();
+    }
+
+    @RequestMapping("/powerRight")
+    public String powerRight(@RequestParam(value = "value", defaultValue = "50") String powerRight) {
         engineController.rightAxisPower(Float.parseFloat(powerRight)/100);
         return "Received" + System.currentTimeMillis();
     }

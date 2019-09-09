@@ -1,8 +1,6 @@
 
-8squid:S1170"!Make this final field static too.(­¬•Æ
-qsquid:S00116"YRename this field "ANGLE_PER_STEP" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­¬•Æ
-O
-squid:S1062"9Replace this use of System.out or System.err by a logger.(¶ìíè
-Isquid:S1068"2Remove this unused "ANGLE_PER_STEP" private field.(­¬•Æ
-O
-squid:S106;"9Replace this use of System.out or System.err by a logger.(¶ìíè
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ñ´¨Ÿ8ìäŸÍ-
+`squid:S2094	"BRemove this empty class, write its code or make it an "interface".(¬Æõ¢8‰ÕåŸÍ-
+nsquid:CommentedOutCodeLine,"<This block of commented-out lines of code should be removed.(Ëëá”ýÿÿÿÿ8‰ÕåŸÍ-
+isquid:CommentedOutCodeLineH"<This block of commented-out lines of code should be removed.(ù³À8‰ÕåŸÍ-
+isquid:CommentedOutCodeLineS"<This block of commented-out lines of code should be removed.(ŠäÍß8‰ÕåŸÍ-

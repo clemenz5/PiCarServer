@@ -1,8 +1,9 @@
 package sensors;
 
-import com.diozero.api.*;
+
 
 public class SoundSensor {
+    /*
     private DigitalInputDevice echo;
     private DigitalOutputDevice trigger;
     private SoundSensorCallback callback;
@@ -35,5 +36,7 @@ public class SoundSensor {
         trigger.off();
         trigger.on();
     }
+    */
+
 
 }

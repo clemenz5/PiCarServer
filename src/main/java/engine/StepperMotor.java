@@ -1,14 +1,13 @@
 package engine;
 
-import com.diozero.api.DigitalOutputDevice;
-import com.diozero.util.SleepUtil;
+
 
 /**
  * This class serves as interface to control the Stepper Motor
  * The motor does a full rotation in 2048 Steps
  */
 public class StepperMotor {
-
+/*
     private DigitalOutputDevice in1;
     private DigitalOutputDevice in2;
     private DigitalOutputDevice in3;
@@ -41,6 +40,7 @@ public class StepperMotor {
      *
      * @param gapTime sleepTime in millis
      */
+/*
     private void clockwiseStep(long gapTime){
         for(int i = 0; i<4;i++){
             singleStep(i);
@@ -68,6 +68,7 @@ public class StepperMotor {
      *
      * @return the angle
      */
+/*
     public double getDegree() {
         return degree;
     }
@@ -78,6 +79,7 @@ public class StepperMotor {
      *
      * @param i must be between 1 and 4 to actually do something
      */
+/*
     private void singleStep(int i) {
         switch (i) {
             case 0:
@@ -112,4 +114,5 @@ public class StepperMotor {
                 break;
         }
     }
+    */
 }

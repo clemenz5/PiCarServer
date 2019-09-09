@@ -1,15 +1,18 @@
-import API.*;
-import com.diozero.util.SleepUtil;
-import engine.EngineController;
+import API.Server;
+import com.pi4j.io.gpio.*;
 import org.springframework.boot.SpringApplication;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RestController;
-import utils.GPIOPinPair;
+
 
 public class Main {
 
     public static void main(String[] args) {
+
+        GpioController gpio = GpioFactory.getInstance();
+        gpio.shutdown();
+
         SpringApplication.run(Server.class, args);
+
+
 
         /*
         SoundSensorCallback sensorCallback = distance -> System.out.println("Distance to next Object: " + distance);

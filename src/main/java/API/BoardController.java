@@ -1,15 +1,10 @@
 package API;
 
-import API.PowerRequestCallback;
-import com.diozero.util.SleepUtil;
 import engine.EngineController;
 import engine.StepperMotor;
-import org.springframework.stereotype.Component;
 import sensors.SoundSensor;
-import sensors.SoundSensorCallback;
 import utils.GPIOPinPair;
 
-@Component
 public class BoardController implements PowerRequestCallback {
     private EngineController engineController;
     private StepperMotor stepperMotor;
@@ -17,8 +12,7 @@ public class BoardController implements PowerRequestCallback {
 
     public BoardController() {
 
-
-        //    engineController = new EngineController(new GPIOPinPair(27, 17), new GPIOPinPair(14, 15), new GPIOPinPair(10, 9), new GPIOPinPair(23, 24));
+        engineController = new EngineController(new GPIOPinPair(27, 17), new GPIOPinPair(14, 15), new GPIOPinPair(10, 9), new GPIOPinPair(23, 24));
         /*
         SoundSensorCallback sensorCallback = distance -> System.out.println("Distance to next Object: " + distance);
         soundSensor = new SoundSensor(sensorCallback, 21, 20);
@@ -46,7 +40,7 @@ public class BoardController implements PowerRequestCallback {
     }
 
     @Override
-    public void onPowerRequest(float leftAxis, float rightAxis) {
+    public void onPowerRequest(int leftAxis, int rightAxis) {
         engineController.leftAxisPower(leftAxis / 100);
         engineController.rightAxisPower(rightAxis / 100);
         String s = "leftAxis: " + leftAxis + " rightAxis: " + rightAxis;

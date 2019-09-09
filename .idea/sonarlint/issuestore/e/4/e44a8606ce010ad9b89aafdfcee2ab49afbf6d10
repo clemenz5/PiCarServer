@@ -1,5 +1,2 @@
 
-nsquid:UselessImportCheck"ERemove this unused import 'org.springframework.stereotype.Component'.(Þ÷Ñ¸ÿÿÿÿÿ
-|squid:UselessImportCheck"SRemove this unused import 'org.springframework.web.bind.annotation.RestController'.(±íþ¡þÿÿÿÿ
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ç‹ò¡øÿÿÿÿ
-bsquid:UselessImportCheck"7Remove this unused import 'com.diozero.util.SleepUtil'.(È…¬´8‹À³“Í-
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ç‹ò¡øÿÿÿÿ

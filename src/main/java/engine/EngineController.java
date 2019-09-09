@@ -1,6 +1,5 @@
 package engine;
 
-import org.springframework.stereotype.Component;
 import utils.GPIOPinPair;
 import utils.Strings;
 
@@ -29,19 +28,28 @@ public class EngineController {
         backRightEngine = new Engine(backRight.getPin1(), backRight.getPin2(), 0);
     }
 
-    public void leftAxisPower(float velocity){
-        if (velocity < -1 || velocity > 1) {
+    public void leftAxisPower(int velocity) {
+        if (velocity < -100 || velocity > 100) {
             throw new IllegalArgumentException(Strings.VELOCITY_RANGE);
         }
+        System.out.println("leftAxis: " + velocity);
         frontLeftEngine.power(velocity);
         backLeftEngine.power(velocity);
     }
 
-    public void rightAxisPower(float velocity){
-        if (velocity < -1 || velocity > 1) {
+    public void rightAxisPower(int velocity) {
+        if (velocity < -100 || velocity > 100) {
             throw new IllegalArgumentException(Strings.VELOCITY_RANGE);
         }
+        System.out.println("rightAxis: " + velocity);
         frontRightEngine.power(velocity);
         backRightEngine.power(velocity);
+    }
+
+    public void setMaxPWM(int maxPWM) {
+        frontLeftEngine.setMaxPwm(maxPWM);
+        frontRightEngine.setMaxPwm(maxPWM);
+        backLeftEngine.setMaxPwm(maxPWM);
+        backRightEngine.setMaxPwm(maxPWM);
     }
 }

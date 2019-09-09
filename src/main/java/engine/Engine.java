@@ -1,55 +1,57 @@
 package engine;
 
-import com.diozero.api.PwmOutputDevice;
-import utils.Strings;
+import com.pi4j.io.gpio.*;
+import com.pi4j.util.CommandArgumentParser;
 
 class Engine {
-    private int pin1;
-    private int pin2;
-    private PwmOutputDevice engine1;
-    private PwmOutputDevice engine2;
+    private Pin pin1;
+    private Pin pin2;
+    private GpioPinPwmOutput engine1;
+    private GpioPinPwmOutput engine2;
 
-    Engine(int pin1, int pin2, float velocity) {
-        this.pin1 = pin1;
-        this.pin2 = pin2;
+    private static final int MAX_PWM = 100;
 
+    Engine(int pin1Address, int pin2Address, int velocity) {
+        GpioController gpio = GpioFactory.getInstance();
 
-        engine1 = new PwmOutputDevice(pin1, 50000, 0);
-        engine2 = new PwmOutputDevice(pin2, 50000, 0);
+        pin1 = CommandArgumentParser.getPin(
+                RaspiPin.class,
+                RaspiPin.getPinByAddress(pin1Address),
+                new String[0]);
+
+        pin2 = CommandArgumentParser.getPin(
+                RaspiPin.class,
+                RaspiPin.getPinByAddress(pin2Address),
+                new String[0]);
+
+        engine1 = gpio.provisionSoftPwmOutputPin(pin1);
+        engine2 = gpio.provisionSoftPwmOutputPin(pin2);
+
+        engine1.setPwmRange(MAX_PWM);
+        engine2.setPwmRange(MAX_PWM);
+
         power(velocity);
     }
 
-    void power(float velocity) {
-        if (velocity < -1 || velocity > 1) {
-            throw new IllegalArgumentException(Strings.VELOCITY_RANGE);
-        }
-        if (velocity < 0 && velocity >= -1) {
-            engine1.setValue(velocity);
-            engine2.setValue(0);
+    void power(int velocity) {
+        if (velocity < 0 && velocity >= -100) {
+            engine1.setPwm(-velocity);
+            engine2.setPwm(0);
         } else {
-            engine1.setValue(0);
-            engine2.setValue(Math.abs(velocity));
+            engine1.setPwm(0);
+            engine2.setPwm(velocity);
         }
 
     }
+
+    void setMaxPwm(int maxPwm){
+        engine1.setPwmRange(maxPwm);
+        engine2.setPwmRange(maxPwm);
+    }
+
+
     void stop() {
-        engine1.setValue(0);
-        engine2.setValue(0);
-    }
-
-    int getPin1() {
-        return pin1;
-    }
-
-    void setPin1(int pin1) {
-        this.pin1 = pin1;
-    }
-
-    int getPin2() {
-        return pin2;
-    }
-
-    void setPin2(int pin2) {
-        this.pin2 = pin2;
+        engine1.setPwm(0);
+        engine2.setPwm(0);
     }
 }

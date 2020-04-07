@@ -3,20 +3,22 @@ package API;
 import engine.EngineController;
 import engine.StepperMotor;
 import sensors.SoundSensor;
+import sensors.SoundSensorCallback;
 import utils.GPIOPinPair;
 
-public class BoardController implements PowerRequestCallback {
+public class BoardController implements RequestCallback, SoundSensorCallback {
     private EngineController engineController;
     private StepperMotor stepperMotor;
     private SoundSensor soundSensor;
+    private double lastSoundSensorValue = 0;
+    private static BoardController boardController;
 
-    public BoardController() {
+    private BoardController() {
 
-        engineController = new EngineController(new GPIOPinPair(27, 17), new GPIOPinPair(14, 15), new GPIOPinPair(10, 9), new GPIOPinPair(23, 24));
-        /*
-        SoundSensorCallback sensorCallback = distance -> System.out.println("Distance to next Object: " + distance);
-        soundSensor = new SoundSensor(sensorCallback, 21, 20);
+        engineController = new EngineController(new GPIOPinPair(0,2), new GPIOPinPair(16,15), new GPIOPinPair(13,12), new GPIOPinPair(5,4));
 
+        soundSensor = new SoundSensor(this, 29, 28);
+/*
         engineController.leftAxisPower(0f);
         engineController.rightAxisPower(0f);
 
@@ -47,5 +49,41 @@ public class BoardController implements PowerRequestCallback {
         System.out.println(s);
     }
 
+    @Override
+    public void onLeftPower(int leftAxis) {
+        engineController.leftAxisPower(leftAxis);
+        String s = "leftAxis: " + leftAxis;
+        System.out.println(s);
+    }
 
+    @Override
+    public void onRightPower(int rightAxis) {
+        engineController.rightAxisPower(rightAxis);
+        String s = "rightAxis: " + rightAxis;
+        System.out.println(s);
+    }
+
+    @Override
+    public void onMaxPwm(int maxPwm) {
+        engineController.setMaxPWM(maxPwm);
+    }
+
+    @Override
+    public String onSoundMeasureRequest() {
+        soundSensor.measure();
+        return lastSoundSensorValue+"";
+    }
+
+
+    @Override
+    public void onMeasureResult(double distance) {
+        lastSoundSensorValue = distance;
+    }
+
+    public static BoardController getInstance(){
+        if(boardController == null){
+            boardController = new BoardController();
+        }
+        return boardController;
+    }
 }

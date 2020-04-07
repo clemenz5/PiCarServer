@@ -30,4 +30,5 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile files('build/libs/pi4j-core.jar')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile 'com.pi4j:pi4j-core:1.2'
 }

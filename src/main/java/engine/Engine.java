@@ -9,7 +9,7 @@ class Engine {
     private GpioPinPwmOutput engine1;
     private GpioPinPwmOutput engine2;
 
-    private static final int MAX_PWM = 100;
+    private static final int MAX_PWM = 50;
 
     Engine(int pin1Address, int pin2Address, int velocity) {
         GpioController gpio = GpioFactory.getInstance();
@@ -48,7 +48,6 @@ class Engine {
         engine1.setPwmRange(maxPwm);
         engine2.setPwmRange(maxPwm);
     }
-
 
     void stop() {
         engine1.setPwm(0);

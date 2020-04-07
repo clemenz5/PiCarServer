@@ -6,13 +6,7 @@ import org.springframework.boot.SpringApplication;
 public class Main {
 
     public static void main(String[] args) {
-
-        GpioController gpio = GpioFactory.getInstance();
-        gpio.shutdown();
-
         SpringApplication.run(Server.class, args);
-
-
 
         /*
         SoundSensorCallback sensorCallback = distance -> System.out.println("Distance to next Object: " + distance);

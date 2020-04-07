@@ -14,7 +14,7 @@ public class EngineController {
 
     /**
      * Pass the pins for the Engines. If the Engines are not working correctly e.g. spinning in the wrong direction,
-     * swap the pins in the Tupel
+     * swap the pins in the Tuple
      *
      * @param frontLeft  the pins controlling the front Left engine
      * @param frontRight the pins controlling the front Right engine
